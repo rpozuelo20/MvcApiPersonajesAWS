@@ -1,0 +1,39 @@
+﻿@section scripts{ 
+    <script>
+        $(document).ready(function () {
+            $("#btnLoad").click(function () {
+                var url = "https://3.236.174.182";
+                $.ajax({
+                    type: "GET",
+                    url: url + "/api/personajes",
+                    dataType: "application/json",
+                    success: function (data) {
+                        var html = "";
+                        $.each(data, function (index, personaje) {
+                            html += "<tr>";
+                            html += "<td>" + personaje.nombre + "</td>";
+                            html += "<td><img src='" + personaje.nombre + "' style='width:150px; height:150px; object-fit:cover;'/></td>";
+                            html += "<tr>";
+                        });
+                        $("#tblPersonajes tbody").html(html);
+                    }
+                });
+            });
+        });
+    </script>
+}
+<div class="container">
+    <h1>AWS RDS Api Personajes</h1>
+    <button type="button" id="btnLoad" class="btn btn-info">Cargar Personajes</button>
+    <table class="table table-bordered" id="tblPersonajes">
+        <thead>
+            <tr>
+                <th>Personaje</th>
+                <th>Imagen</th>
+            </tr>
+        </thead>
+        <tbody>
+
+        </tbody>
+    </table>
+</div>
