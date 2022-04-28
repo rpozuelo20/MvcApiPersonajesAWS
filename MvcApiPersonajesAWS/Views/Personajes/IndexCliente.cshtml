@@ -2,21 +2,18 @@
     <script>
         $(document).ready(function () {
             $("#btnLoad").click(function () {
-                var url = "https://3.236.174.182";
-                $.ajax({
-                    type: "GET",
-                    url: url + "/api/personajes",
-                    dataType: "application/json",
-                    success: function (data) {
-                        var html = "";
-                        $.each(data, function (index, personaje) {
-                            html += "<tr>";
-                            html += "<td>" + personaje.nombre + "</td>";
-                            html += "<td><img src='" + personaje.nombre + "' style='width:150px; height:150px; object-fit:cover;'/></td>";
-                            html += "<tr>";
-                        });
-                        $("#tblPersonajes tbody").html(html);
-                    }
+                var url = "https://44.205.0.194/";
+                $.get(url + "api/personajes", function (data) {
+                    var html = "";
+                    $.each(data, function (index, personaje) {
+                        html += "<tr>";
+                        html += "<td>" + personaje.nombre + "</td>";
+                        html += "<td class='text-center'>";
+                        html += "<img src='" + personaje.imagen + "' style='width:350px;height:250px;object-fit:cover;'/>";
+                        html += "</td>";
+                        html += "</tr>";
+                    });
+                    $("#tblPersonajes tbody").html(html);
                 });
             });
         });
